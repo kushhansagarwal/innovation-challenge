@@ -1,4 +1,54 @@
 /* Write your global styles here, in PostCSS syntax */
 @tailwind base;
 @tailwind components;
-@tailwind utilities
+@tailwind utilities;
+
+@layer components {
+    h2 {
+        @apply text-2xl font-bold;
+    }
+
+    h3 {
+        @apply text-base font-semibold m-0 p-0;
+    }
+
+    li {
+        @apply mb-1;
+    }
+
+    .divider {
+        @apply m-0 p-0;
+    }
+
+    body {
+        font-family: 'Inter', sans-serif;
+    }
+
+    .logo {
+        @apply text-4xl font-bold;
+    }
+
+    .logo-text {
+        @apply text-sm text-gray-500;
+    }
+
+    .button-list {
+        @apply flex flex-col;
+    }
+
+    .button-list button {
+        @apply flex items-center gap-2 p-3 rounded-lg bg-base-100 hover:bg-base-200;
+    }
+
+    .button-list button img {
+        @apply h-6 w-6 mr-5;
+    }
+
+    .btn-error {
+        @apply border-2  border-red-500 bg-transparent;
+    }
+
+    .btn-error:hover {
+        @apply bg-red-500 text-white;
+    }
+}
