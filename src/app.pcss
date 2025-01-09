@@ -4,51 +4,107 @@
 @tailwind utilities;
 
 @layer components {
-    h2 {
-        @apply text-2xl font-bold;
-    }
+	h2 {
+		@apply text-2xl font-bold;
+	}
 
-    h3 {
-        @apply text-base font-semibold m-0 p-0;
-    }
+	h3 {
+		@apply m-0 p-0 text-base font-semibold;
+	}
 
-    li {
-        @apply mb-1;
-    }
+	li {
+		@apply mb-1;
+	}
 
-    .divider {
-        @apply m-0 p-0;
-    }
+	.divider {
+		@apply m-0 p-0;
+	}
 
-    body {
-        font-family: 'Inter', sans-serif;
-    }
+	body {
+		font-family: 'Inter', sans-serif;
+	}
 
-    .logo {
-        @apply text-4xl font-bold;
-    }
+	.logo {
+		@apply text-4xl font-bold;
+	}
 
-    .logo-text {
-        @apply text-sm text-gray-500;
-    }
+	.logo-text {
+		@apply text-sm text-gray-500;
+	}
 
-    .button-list {
-        @apply flex flex-col;
-    }
+	.button-list {
+		@apply flex flex-col;
+	}
 
-    .button-list button {
-        @apply flex items-center gap-2 p-3 rounded-lg bg-base-100 hover:bg-base-200;
-    }
+	.button-list button {
+		@apply flex items-center gap-2 rounded-lg bg-base-100 p-3 hover:bg-base-200;
+	}
 
-    .button-list button img {
-        @apply h-6 w-6 mr-5;
-    }
+	.button-list button img {
+		@apply mr-5 h-6 w-6;
+	}
 
-    .btn-error {
-        @apply border-2  border-red-500 bg-transparent;
-    }
+	.btn-error {
+		@apply border-2  border-red-500 bg-transparent;
+	}
 
-    .btn-error:hover {
-        @apply bg-red-500 text-white;
-    }
+	.btn-error:hover {
+		@apply bg-red-500 text-white;
+	}
+
+	.chip {
+		@apply rounded-md px-2 py-1 text-sm;
+	}
+
+	.linkedin-button {
+		@apply rounded-md p-2 text-white;
+	}
+
+	.linkedin-button:hover {
+		@apply text-white;
+	}
+
+	.github-button {
+		@apply rounded-md p-2 text-white;
+	}
+
+	.github-button:hover {
+		@apply text-white;
+	}
+
+	.email-button {
+		@apply rounded-md p-2 text-white;
+	}
+
+	.email-button:hover {
+		@apply text-white;
+	}
+
+	.chip-track {
+		@apply bg-success bg-opacity-25 text-white opacity-75 hover:bg-opacity-50;
+	}
+
+	.chip-role-interest {
+		@apply bg-warning bg-opacity-25 text-white opacity-75 hover:bg-opacity-50;
+	}
+
+	.chip-industry {
+		@apply bg-accent bg-opacity-25 text-white opacity-75 hover:bg-opacity-50;
+	}
+
+	.chip-competition {
+		@apply bg-secondary bg-opacity-25 text-white opacity-75 hover:bg-opacity-50;
+	}
+
+	.chip-program {
+		@apply bg-primary bg-opacity-25 text-white opacity-75 hover:bg-opacity-50;
+	}
+
+	.active {
+		@apply bg-opacity-100;
+	}
+
+	.chip-header {
+		@apply w-full text-sm font-semibold;
+	}
 }

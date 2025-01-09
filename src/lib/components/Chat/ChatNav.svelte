@@ -1,7 +1,15 @@
+<script lang="ts">
+    import type { UserType } from '$lib/types';
+    import { selectedNavigationOption } from '$lib/stores';
+    import { NavigationOption } from '$lib/stores';
+
+    export let data: { userData: UserType };
+</script>
+
 <div class="flex h-full max-w-md flex-col gap-4 rounded-2xl pl-8 md:rounded-l-none">
 	<div class="flex-shrink-0">
 		<h2 class="logo">Kuhnelo</h2>
-		<p class="logo-text">Get a job.</p>
+		<p class="logo-text">Made with ❤️ for UCLA</p>
 	</div>
 	<div class="rounded-xl bg-base-200 p-6">
 		<ul class="list-inside list-disc text-sm">
@@ -13,17 +21,17 @@
 		</ul>
 	</div>
 	<div class="button-list h-full flex-grow">
-		<button>
-			<img src="/icons/chat.svg" alt="Chat Icon" />
+		<button on:click={() => selectedNavigationOption.set(NavigationOption.Chat)}>
+			<img src="/icons/chat.svg"  alt="Chat Icon" />
 			<span>Chat</span>
 		</button>
-		<button>
+		<button on:click={() => selectedNavigationOption.set(NavigationOption.Matches)}>
 			<img src="/icons/matches.svg" alt="Matches Icon" />
 			<span>Matches</span>
 		</button>
-		<button>
+		<button on:click={() => selectedNavigationOption.set(NavigationOption.GoogleSheet)}>
 			<img src="/icons/dashboard.svg" alt="Dashboard Icon" />
-			<span>Dashboard</span>
+			<span>Google Sheet</span>
 		</button>
 	</div>
 	<div class=" w-full flex-shrink-0 rounded-2xl bg-base-200 p-4">
@@ -32,7 +40,7 @@
 				class="relative h-12 w-12  rounded-full shadow-[0_0_0_0.25rem_#FEFEFE] dark:shadow-[0_0_0_0.25rem_#232627]"
 			>
 				<img
-					src="https://lh3.googleusercontent.com/a/ACg8ocLtgaYL59QxSrGNC5Lm5drjVLXXuwlvKpcz2bzf5nTt6tdtaxGq"
+					src={data.userData.picture}
 					alt="User Avatar"
 					class="h-full w-full object-cover rounded-full"
 				/>
@@ -40,14 +48,14 @@
 				<div class="absolute bottom-0 right-0 h-3 w-3 rounded-full bg-green-500"></div>
 			</div>
 			<div>
-				<p class="text-base font-semibold">Kush Agarwal</p>
-				<p class="text-sm text-gray-500">kush@kuhnelo.com</p>
+				<p class="text-base font-semibold">{data.userData.given_name} {data.userData.family_name}</p>
+				<p class="text-sm text-gray-500">{data.userData.email}</p>
 			</div>
 		</div>
 		<div class="divider my-4"></div>
-		<button class="btn btn-error w-full text-white">
+		<a href="/api/auth/logout" class="btn btn-error w-full text-white">
 			<img src="/icons/logout.svg" alt="Logout Icon" />
 			<span>Log Out</span>
-        </button>
+		</a>
 	</div>
 </div>
