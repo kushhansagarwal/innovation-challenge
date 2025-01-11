@@ -25,7 +25,6 @@ export async function load({ request, cookies }: { request: RequestEvent; cookie
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json',
-						'Origin': 'http://localhost:5173',
 						'Authorization': `Bearer ${kindeToken}`
 					},
 					body: JSON.stringify(userData)
