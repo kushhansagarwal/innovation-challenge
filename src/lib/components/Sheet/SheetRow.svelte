@@ -16,7 +16,13 @@
 		</div>
 		<div>
 			<div class="font-bold">{row.name}</div>
-			<div class="text-sm opacity-50">{row.school} | {row.grad_year}</div>
+			{#if row.school || row.grad_year}
+				<div class="text-sm opacity-50">
+					{row.school}
+					{#if row.school && row.grad_year} | {/if}
+					{#if row.grad_year}{row.grad_year}{/if}
+				</div>
+			{/if}
 			<div class="mt-1 flex gap-1">
 				<button
 					class="email-button p-1 hover:bg-base-300"

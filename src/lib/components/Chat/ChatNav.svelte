@@ -7,19 +7,11 @@
 </script>
 
 <div class="flex h-full max-w-md flex-col gap-4 rounded-2xl pl-8 md:rounded-l-none">
-	<div class="flex-shrink-0">
-		<h2 class="logo">Kuhnelo</h2>
-		<p class="logo-text">Made with 💛 for UCLA</p>
+	<div class="flex-shrink-0 cursor-pointer hover:bg-base-200 p-4 rounded-2xl" on:click={() => selectedNavigationOption.set(NavigationOption.Chat)}>
+		<h2 class="logo mb-2">Innovation Challenge Matching</h2>
+		<p class="logo-text">Made by Kuhnelo for UCLA</p>
 	</div>
-	<div class="rounded-xl bg-base-200 p-6">
-		<ul class="list-inside list-disc text-sm">
-			<li>Sign up or log in to your account.</li>
-			<li>Navigate to the chat section.</li>
-			<li>Select a contact to start chatting.</li>
-			<li>Type your message and hit send.</li>
-			<li>Enjoy your conversation!</li>
-		</ul>
-	</div>
+	<div class="divider"></div>
 	<div class="button-list h-full flex-grow">
 		<button on:click={() => selectedNavigationOption.set(NavigationOption.Chat)}>
 			<img src="/icons/chat.svg"  alt="Chat Icon" />
@@ -31,7 +23,7 @@
 		</button>
 		<button on:click={() => selectedNavigationOption.set(NavigationOption.GoogleSheet)}>
 			<img src="/icons/dashboard.svg" alt="Dashboard Icon" />
-			<span>Google Sheet</span>
+			<span>All Participants</span>
 		</button>
 	</div>
 	<div class=" w-full flex-shrink-0 rounded-2xl bg-base-200 p-4">

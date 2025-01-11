@@ -21,6 +21,7 @@
 
 	let newMessage = '';
 	let isSending = false;
+	let startedSession = false;
 
 	sendButtonDisabled.set(true);
 
@@ -36,6 +37,7 @@
 				});
 
 				if (response.ok) {
+					startedSession = true;
 					sendButtonDisabled.set(false);
 					const responseData = (await response.json()).response;
 					sessionId.set(responseData.session_id);
@@ -56,6 +58,9 @@
 	}
 
 	async function sendMessage() {
+		if (!startedSession) {
+			await startSession();
+		}
 		sendButtonDisabled.set(true);
 		if (newMessage.trim() === '') return;
 
@@ -140,6 +145,11 @@
 
 <div class="flex h-full w-full flex-col items-start rounded-2xl bg-base-200 md:rounded-r-none">
 	<div class="message-container flex h-full w-full flex-grow flex-col gap-4 overflow-y-auto p-8">
+		{#if !startedSession}
+			<div class="animate-pulse">
+				Please wait while we start the session...
+			</div>
+		{/if}
 		{#each $messages as message (message.timestamp)}
 			{#if message.role === 'human'}
 				<HumanMessage {message} {data} />
