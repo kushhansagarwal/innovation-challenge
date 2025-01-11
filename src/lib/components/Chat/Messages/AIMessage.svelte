@@ -42,6 +42,9 @@
 	}
 
 	onMount(() => {
+		const totalDuration = 1000; // 1 second in milliseconds
+		const intervalDuration = totalDuration / message.content.length;
+
 		const interval = setInterval(() => {
 			if (index < message.content.length) {
 				displayedContent += message.content[index];
@@ -49,20 +52,20 @@
 			} else {
 				clearInterval(interval);
 			}
-		}, 10); // Adjust the speed of the typewriter effect here
+		}, intervalDuration);
 	});
 </script>
 
-<div class="relative mr-auto max-w-[50rem] rounded-3xl bg-primary text-primary-content">
+<div class="relative mr-auto max-w-[50rem] rounded-2xl bg-base-300 text-primary-content">
 	<div
-		class="border-3 border-n-2 dark:bg-n-5/50 rounded-[1.25rem] px-6 pb-16 pt-6 md:p-5 md:pb-8 dark:border-transparent"
+		class="px-6 pb-16 pt-6 md:p-5 md:pb-8 text-sm"
 	>
 		<div class="">{displayedContent}</div>
 		{#if words}
 			<!-- Display each word as a clickable button -->
-			<div class="flex mt-3">
+			<div class="flex flex-wrap mt-3">
 				{#each words as word}
-					<button class="btn btn-outline m-1" on:click={() => handleWordClick(word)}>
+					<button class="btn btn-outline btn-sm m-1" on:click={() => handleWordClick(word)}>
 						{word}
 					</button>
 				{/each}
@@ -73,7 +76,7 @@
 	</div>
 	<div class="absolute -bottom-6 left-6 flex items-end">
 		<div
-			class="relative h-12 w-12 overflow-hidden rounded-full shadow-[0_0_0_0.25rem_#FEFEFE] dark:shadow-[0_0_0_0.25rem_#232627]"
+			class="relative h-12 w-12 overflow-hidden rounded-full border-2 border-primary"
 		>
 			<img src="/GIRAF.png" alt="GIRAF" />
 		</div>

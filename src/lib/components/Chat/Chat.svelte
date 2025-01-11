@@ -81,8 +81,9 @@
 
 		let optionMessage: Message | null = null;
 
-		if (responseData.profile) {
-			const profile = responseData.profile;
+		const profile = responseData.profile;
+		console.log(profile);
+		if (profile) {
 
 			try {
 				const profileResponse = await fetch(`${PUBLIC_ENDPOINT_URL}/innovation-challenge/`, {
@@ -91,7 +92,7 @@
 						'Content-Type': 'application/json',
 						Authorization: `Bearer ${token}`
 					},
-					body: JSON.stringify(responseData.profile)
+					body: JSON.stringify({...profile, name: data.userData.given_name + ' ' + data.userData.family_name})
 				});
 
 				if (profileResponse.ok) {
@@ -147,18 +148,18 @@
 			{/if}
 		{/each}
 	</div>
-	<div class="query-container w-full flex-shrink-0 p-8">
+	<div class="query-container w-full flex-shrink-0 p-8 text-sm">
 		<div class="join-item flex items-center gap-2">
 			<input
 				type="text"
 				disabled={$sendButtonDisabled}
 				bind:value={newMessage}
-				class="input h-16 w-full rounded-2xl"
+				class="input h-14 w-full rounded-2xl input-sm"
 				placeholder="Type your message here..."
 				on:keypress={handleKeyPress}
 			/>
 			<button
-				class="btn btn-success h-16 rounded-2xl"
+				class="btn h-14 rounded-2xl btn-sm"
 				on:click={sendMessage}
 				disabled={isSending || $sendButtonDisabled}>Send Message</button
 			>

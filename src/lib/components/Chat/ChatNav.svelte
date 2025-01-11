@@ -9,7 +9,7 @@
 <div class="flex h-full max-w-md flex-col gap-4 rounded-2xl pl-8 md:rounded-l-none">
 	<div class="flex-shrink-0">
 		<h2 class="logo">Kuhnelo</h2>
-		<p class="logo-text">Made with ❤️ for UCLA</p>
+		<p class="logo-text">Made with 💛 for UCLA</p>
 	</div>
 	<div class="rounded-xl bg-base-200 p-6">
 		<ul class="list-inside list-disc text-sm">
@@ -37,10 +37,10 @@
 	<div class=" w-full flex-shrink-0 rounded-2xl bg-base-200 p-4">
 		<div class="flex items-center gap-4">
 			<div
-				class="relative h-12 w-12  rounded-full shadow-[0_0_0_0.25rem_#FEFEFE] dark:shadow-[0_0_0_0.25rem_#232627]"
+				class="relative h-12 w-12  rounded-full "
 			>
 				<img
-					src={data.userData.picture}
+					src={`https://ui-avatars.com/api/?name=${data.userData.given_name}+${data.userData.family_name}`}
 					alt="User Avatar"
 					class="h-full w-full object-cover rounded-full"
 				/>
@@ -53,8 +53,8 @@
 			</div>
 		</div>
 		<div class="divider my-4"></div>
-		<a href="/api/auth/logout" class="btn btn-error w-full text-white">
-			<img src="/icons/logout.svg" alt="Logout Icon" />
+		<a href="/api/auth/logout" class="btn btn-error w-full text-primary-content">
+			<!-- <img src="/icons/logout.svg" class="fill-amber-50" alt="Logout Icon" /> -->
 			<span>Log Out</span>
 		</a>
 	</div>

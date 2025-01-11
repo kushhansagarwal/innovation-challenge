@@ -13,4 +13,4 @@ export enum NavigationOption {
     GoogleSheet = 'google_sheet'
 }
 
-export const selectedNavigationOption = writable<NavigationOption>(NavigationOption.Chat);
+export const selectedNavigationOption = writable<NavigationOption>(NavigationOption.Matches);
