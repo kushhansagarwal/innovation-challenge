@@ -59,7 +59,8 @@
 					sendButtonDisabled.set(false);
 					const responseData = (await response.json()).response;
 					sessionId.set(responseData.session_id);
-					currentRegex.set(responseData.regex);
+					console.log(responseData.regex || '.*');
+					currentRegex.set(responseData.regex || '.*');
 					messages.update((currentMessages) => [
 						...currentMessages,
 						{ role: 'ai', content: responseData.message, timestamp: Date.now() }
@@ -88,7 +89,7 @@
 				const regex = new RegExp($currentRegex);
 				
 				if (!regex.test(newMessage)) {
-					errorMessage = 'Incorrectly formatted message. Please enter the requested information.';
+					errorMessage = `Incorrectly formatted message. Please enter the requested information. ${$currentRegex}`;
 					sendButtonDisabled.set(false);
 					return;
 				}
@@ -123,6 +124,10 @@
 		let optionMessage: Message | null = null;
 
 		const profile = responseData.profile;
+
+		console.log(responseData);
+		console.log(responseData.regex || '.*');
+		currentRegex.set(responseData.regex || '.*');
 		
 		if (profile) {
 			try {
