@@ -4,10 +4,10 @@
 	export let index: number;
 </script>
 
-<div class="card bg-base-100  p-4 rounded-lg">
+<div class="card bg-base-100 p-4">
 	<div class="flex items-center gap-3">
 		<div class="avatar">
-			<div class="mask mask-squircle h-24 w-24 mr-4">
+			<div class="mask mask-squircle mr-4 h-24 w-24">
 				<img
 					src={`https://ui-avatars.com/api/?name=${row.name?.replace(' ', '+')}`}
 					alt="Avatar Tailwind CSS Component"
@@ -19,58 +19,65 @@
 			{#if row.school || row.grad_year}
 				<div class="text-sm opacity-50">
 					{row.school}
-					{#if row.school && row.grad_year} | {/if}
+					{#if row.school && row.grad_year}
+						|
+					{/if}
 					{#if row.grad_year}{row.grad_year}{/if}
 				</div>
 			{/if}
 			<div class="mt-1 flex gap-1">
-				<button
-					class="email-button p-1 hover:bg-base-300"
-					on:click={() => window.open(`mailto:${row.email}`, '_blank')}
-				>
-					<img src="/icons/email.svg" alt="Email" class="h-6 w-6" />
-				</button>
-				{#if row.linkedin}
-					<button
-						class="linkedin-button p-1 hover:bg-base-300"
-						on:click={() => window.open(row.linkedin ?? '', '_blank')}
+				{#if row.email}
+					<a
+						class="button-chip rounded-md"
+						href={`mailto:${row.email}`}
+						target="_blank"
 					>
-						<img src="/icons/linkedin.svg" alt="LinkedIn" class="h-6 w-6" />
-					</button>
+						Email
+					</a>
+				{/if}
+				{#if row.linkedin}
+					<a
+						class="button-chip"
+						href={row.linkedin ?? ''}
+						target="_blank"
+					>
+						LinkedIn
+					</a>
 				{/if}
 				{#if row.github}
-					<button
-						class="github-button p-1 hover:bg-base-300"
-						on:click={() => window.open(row.github ?? '', '_blank')}
+					<a
+						class="button-chip"
+						href={row.github ?? ''}
+						target="_blank"
 					>
-						<img src="/icons/github.svg" alt="Github" class="h-6 w-6" />
-					</button>
+						Github
+					</a>
 				{/if}
 			</div>
 		</div>
 	</div>
-    <div class="divider py-5"></div>
-	<div class="mt-2 flex flex-wrap gap-2">
-		<div class="chip chip-program text-white">{row.program}</div>
-		{#each row.industry?.split(',') ?? [] as industry}
-			<div class="chip chip-industry text-white">{industry.trim()}</div>
-		{/each}
-		{#each row.track?.split(',') ?? [] as track}
-			<div class="chip chip-track text-white">{track.trim()}</div>
-		{/each}
-		{#each row.role_interest?.split(',') ?? [] as role_interest}
-			{#if role_interest.trim()}
-				<div class="chip chip-role-interest text-white">{role_interest.trim()}</div>
+	<div class="mt-5 flex flex-wrap gap-2">
+		<div class="text-sm">
+			{#if row.program}
+			<p><strong>Program:</strong> {row.program}</p>
 			{/if}
-		{/each}
-		{#each row.competition?.split(',') ?? [] as competition}
-			{#if competition.trim()}
-				<div class="chip chip-competition text-white">{competition.trim()}</div>
+			{#if row.industry}
+			<p><strong>Industry:</strong> {row.industry}</p>
 			{/if}
-		{/each}
+			{#if row.track}
+			<p><strong>Track:</strong> {row.track}</p>
+			{/if}
+			{#if row.role_interest}
+			<p><strong>Role Interest:</strong> {row.role_interest}</p>
+			{/if}
+			{#if row.competition}
+			<p><strong>Competition:</strong> {row.competition}</p>
+			{/if}
+		</div>
 	</div>
+	<div class="divider my-2"></div>
 	{#if row.bio}
-		<div class="mt-4">
+		<div class="">
 			<p class="text-sm">{row.bio}</p>
 		</div>
 	{/if}

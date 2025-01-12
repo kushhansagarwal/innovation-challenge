@@ -160,7 +160,7 @@
 			<div class="flex h-full w-full flex-grow flex-col gap-4 overflow-y-auto p-8">
 				<div class="grid grid-cols-1 gap-8 md:grid-cols-2 overflow-y-auto">
 					{#each $filteredData as row, index}
-						<div class="card rounded-lg bg-base-100 p-4 shadow-md">
+						<div class="card rounded-lg bg-base-100 p-4">
 							<SheetRow {row} {index} />
 						</div>
 					{/each}
