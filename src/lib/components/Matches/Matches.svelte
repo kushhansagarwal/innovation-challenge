@@ -47,7 +47,7 @@
 
 <div class="relative flex h-full w-full flex-col items-start rounded-2xl bg-base-200 md:rounded-r-none p-8">
 	{#if loading}
-		<p>Loading matches...</p>
+		<div class="animate-pulse">Loading matches...</div>
 	{:else}
 	<div class="grid grid-cols-1 gap-8 md:grid-cols-3 overflow-y-auto">
 					<div>

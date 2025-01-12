@@ -89,7 +89,7 @@
 				const regex = new RegExp($currentRegex);
 				
 				if (!regex.test(newMessage)) {
-					errorMessage = `Incorrectly formatted message. Please enter the requested information. ${$currentRegex}`;
+					errorMessage = `Incorrectly formatted message. Please enter the requested information.`;
 					sendButtonDisabled.set(false);
 					return;
 				}

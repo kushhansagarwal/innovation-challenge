@@ -65,7 +65,11 @@
 	}
 
 	.chip {
-		@apply rounded-md px-2 py-1 text-sm bg-gray-200;
+		@apply rounded-md px-2 py-1 text-sm bg-accent bg-opacity-70 text-accent-content hover:bg-opacity-80;
+	}
+
+	.active {
+		@apply bg-opacity-100;
 	}
 
 	.linkedin-button {
@@ -92,44 +96,7 @@
 		@apply text-white;
 	}
 
-	.chip-track {
-		@apply bg-success text-white opacity-75 hover:bg-opacity-50;
-	}
-	:root[data-theme='ucla'] .chip-track {
-		@apply bg-opacity-25;
-	}
 
-	.chip-role-interest {
-		@apply bg-warning text-white opacity-75 hover:bg-opacity-50;
-	}
-	:root[data-theme='ucla'] .chip-role-interest {
-		@apply bg-opacity-25;
-	}
-
-	.chip-industry {
-		@apply bg-accent text-white opacity-75 hover:bg-opacity-50;
-	}
-	:root[data-theme='ucla'] .chip-industry {
-		@apply bg-opacity-25;
-	}
-
-	.chip-competition {
-		@apply bg-secondary text-white opacity-75 hover:bg-opacity-50;
-	}
-	:root[data-theme='ucla'] .chip-competition {
-		@apply bg-opacity-25;
-	}
-
-	.chip-program {
-		@apply bg-primary text-white opacity-75 hover:bg-opacity-50;
-	}
-	:root[data-theme='ucla'] .chip-program {
-		@apply bg-opacity-25;
-	}
-
-	.active {
-		@apply bg-opacity-100;
-	}
 
 	.chip-header {
 		@apply w-full text-sm font-semibold;
