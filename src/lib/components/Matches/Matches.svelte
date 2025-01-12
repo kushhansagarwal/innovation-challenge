@@ -22,21 +22,18 @@
 
 			if (response.ok) {
 				const data: {
-                    matches: SheetInfo[]
-                } = await response.json();
+					matches: SheetInfo[];
+				} = await response.json();
 				matches = data.matches;
 			} else {
-				
 			}
 		} catch (error) {
-			
 		} finally {
 			loading = false;
 		}
 	}
 
 	onMount(async () => {
-		
 		await fetchMatches();
 	});
 
@@ -45,23 +42,23 @@
 	}
 </script>
 
-<div class="relative flex h-full w-full flex-col items-start rounded-2xl bg-base-200 md:rounded-r-none p-8">
+<div
+	class="relative flex h-full w-full flex-col items-start rounded-2xl bg-base-200 p-8 md:rounded-r-none"
+>
 	{#if loading}
 		<div class="animate-pulse">Loading matches...</div>
 	{:else}
-	<div class="grid grid-cols-1 gap-8 md:grid-cols-3 overflow-y-auto">
-					<div>
-						<div>
-							<h2>Your Matches</h2>
-							<p class="text-base-content mb-5">Here are your potential matches based on your preferences. Click "Reset Matches" to start over and find new matches.</p>
-						</div>
-						<button 
-							class="btn btn-error"
-							on:click={goToChat}
-						>
-							Reset Matches
-						</button>
-					</div>
+		<div class="grid grid-cols-1 gap-8 overflow-y-auto xl:grid-cols-2">
+			<div>
+				<div>
+					<h2>Your Matches</h2>
+					<p class="mb-5 text-base-content">
+						Here are your potential matches based on your preferences. Click "Reset Matches" to
+						start over and find new matches.
+					</p>
+				</div>
+				<button class="btn btn-error" on:click={goToChat}> Reset Matches </button>
+			</div>
 			{#each matches as row, index}
 				<div class="card rounded-lg bg-base-100 p-4 shadow-md">
 					<SheetRow {row} {index} />

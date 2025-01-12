@@ -197,7 +197,7 @@
 	function autoResizeTextarea(event: Event) {
 		const target = event.target as HTMLTextAreaElement;
 		target.style.height = 'auto';
-		target.style.height = `${target.scrollHeight}px`;
+		target.style.height = `${Math.min(target.scrollHeight, 70)}px`;
 	}
 </script>
 

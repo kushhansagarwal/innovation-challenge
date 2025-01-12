@@ -183,15 +183,15 @@
 	let showMoreRoleInterests = writable(false);
 </script>
 
-<div class="flex h-full w-full flex-col items-start rounded-2xl bg-base-200 md:rounded-r-none">
+<div class="flex h-full w-full flex-col items-start rounded-2xl bg-base-200 xl:rounded-r-none">
 
-	<div class="grid h-full grid-cols-1 overflow-y-auto md:grid-cols-3">
-		<div class="overflow-y-auto md:col-span-2">
+	<div class="grid xl:h-full grid-cols-1 overflow-y-auto xl:grid-cols-2">
+		<div class="overflow-y-auto order-2 xl:order-1">
 			<div class="flex h-full w-full flex-grow flex-col gap-4 overflow-y-auto p-8">
 				{#if $isLoading}
 				<div class="animate-pulse">Loading all the data...</div>
 			{/if}
-				<div class="grid grid-cols-1 gap-8 overflow-y-auto md:grid-cols-2">
+				<div class="grid grid-cols-1 gap-8 overflow-y-auto">
 					{#each $filteredData as row, index}
 						<div class="card rounded-lg bg-base-100 p-4">
 							<SheetRow {row} {index} />
@@ -200,8 +200,8 @@
 				</div>
 			</div>
 		</div>
-		<div class="h-full border-l border-base-300">
-			<div class="order-1 flex flex-wrap gap-2 p-8 md:order-2">
+		<div class="max-h-1/3 border-l border-base-300 xl:h-full xl:order-2 overflow-y-auto xl:overflow-visible hidden xl:block">
+			<div class="flex flex-wrap gap-2 p-8">
 				<h3 class="chip-header">Programs</h3>
 				{#each Array.from($masterPrograms).slice(0, 5) as program}
 					<div class="flex flex-wrap gap-2">
