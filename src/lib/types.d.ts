@@ -27,6 +27,7 @@ export type ChatResponse = {
 	step: number;
 	options: string[];
 	profile?: SheetInfo;
+	regex?: string;
 };
 
 export type SheetResponse = {
