@@ -1,5 +1,5 @@
 <script>
-  export let title = "Innovation Challenge Team Matching | Kuhnelo";
+  export let title = "Innovation Challenge Team Finder | Kuhnelo";
 </script>
 
 <svelte:head>
