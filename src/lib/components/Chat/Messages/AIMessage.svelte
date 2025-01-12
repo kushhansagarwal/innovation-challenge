@@ -1,19 +1,25 @@
+
+
 <script lang="ts">
 	import type { Message } from '$lib/types.d.ts';
 	import { messages, sessionId } from '$lib/stores';
 	import { onMount } from 'svelte';
 	import { PUBLIC_ENDPOINT_URL } from '$env/static/public';
     import { sendButtonDisabled } from '$lib/stores';
+	import { selectedNavigationOption } from '$lib/stores';
+	import { NavigationOption } from '$lib/stores';
 
 	export let message: Message;
 	export let token: string;
 	let displayedContent = '';
 	let index = 0;
 	let words = message.options;
+	let buttonsDisabled = false;
 
 	// Function to handle button click
 	async function handleWordClick(word: string) {
-		console.log(`Word clicked: ${word}`);
+		
+		buttonsDisabled = true;
 		messages.update((currentMessages: Message[]) => [
 			...currentMessages,
 			{ role: 'human', content: word, timestamp: Date.now() }
@@ -39,6 +45,12 @@
 			...currentMessages,
 			{ role: 'ai', content: responseData.message, timestamp: Date.now(), options: responseData.options }
 		]);
+
+		if (responseData.profile) {
+			setTimeout(() => {
+				selectedNavigationOption.set(NavigationOption.Matches);
+			}, 2000);
+		}
 	}
 
 	onMount(() => {
@@ -56,16 +68,20 @@
 	});
 </script>
 
-<div class="relative mr-auto max-w-[50rem] rounded-2xl bg-base-300 text-primary-content">
+<div class="relative message mr-auto max-w-[50rem] rounded-2xl bg-base-300 text-primary-content">
 	<div
-		class="px-6 pb-16 pt-6 md:p-5 md:pb-8 text-sm"
+		class="px-6 pb-8 pt-6 text-sm"
 	>
-		<div class="">{displayedContent}</div>
+		<div class="">{message.content}</div>
 		{#if words}
 			<!-- Display each word as a clickable button -->
 			<div class="flex flex-wrap mt-3">
 				{#each words as word}
-					<button class="btn btn-outline btn-sm m-1" on:click={() => handleWordClick(word)}>
+					<button 
+						class="btn btn-outline btn-sm m-1" 
+						on:click={() => handleWordClick(word)}
+						disabled={buttonsDisabled}
+					>
 						{word}
 					</button>
 				{/each}

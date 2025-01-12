@@ -57,7 +57,7 @@
 	}
 
 	.btn-error {
-		@apply border-2  border-red-500 bg-transparent;
+		@apply border-2  border-red-500 bg-transparent bg-base-200 text-base-content;
 	}
 
 	.btn-error:hover {
@@ -133,5 +133,20 @@
 
 	.chip-header {
 		@apply w-full text-sm font-semibold;
+	}
+
+	@keyframes floatUp {
+		from {
+			transform: translateY(20px);
+			opacity: 0;
+		}
+		to {
+			transform: translateY(0);
+			opacity: 1;
+		}
+	}
+
+	.message {
+		animation: floatUp 0.2s ease-out;
 	}
 }

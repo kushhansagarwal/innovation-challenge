@@ -2,13 +2,13 @@
 	import HumanMessage from './Messages/HumanMessage.svelte';
 	import AIMessage from './Messages/AIMessage.svelte';
 	import type { ChatResponse, Message, UserType } from '$lib/types.d.ts';
-	import { messages, sessionId } from '$lib/stores';
+	import { messages, NavigationOption, selectedNavigationOption, sessionId } from '$lib/stores';
 	import { PUBLIC_ENDPOINT, PUBLIC_ENDPOINT_URL } from '$env/static/public';
-	import { onMount } from 'svelte';
-	import { sendButtonDisabled } from '$lib/stores';
+	import { onMount, afterUpdate } from 'svelte';
+	import { sendButtonDisabled, currentRegex } from '$lib/stores';
 
 	messages.subscribe((messages) => {
-		console.log(messages);
+		
 	});
 
 	export let data: { userData: UserType };
@@ -20,10 +20,28 @@
 	});
 
 	let newMessage = '';
+	let errorMessage = '';
 	let isSending = false;
 	let startedSession = false;
 
 	sendButtonDisabled.set(true);
+
+	let messageContainer: HTMLDivElement;
+
+	// Log messages to ensure they are updating
+	messages.subscribe((messages) => {
+		
+	});
+
+	afterUpdate(() => {
+		if (messageContainer) {
+			
+			messageContainer.scrollTo({
+				top: messageContainer.scrollHeight,
+				behavior: 'smooth'
+			});
+		}
+	});
 
 	async function startSession() {
 		return new Promise(async (resolve, reject) => {
@@ -41,17 +59,18 @@
 					sendButtonDisabled.set(false);
 					const responseData = (await response.json()).response;
 					sessionId.set(responseData.session_id);
+					currentRegex.set(responseData.regex);
 					messages.update((currentMessages) => [
 						...currentMessages,
 						{ role: 'ai', content: responseData.message, timestamp: Date.now() }
 					]);
 					resolve(responseData);
 				} else {
-					console.error('Failed to start session');
+					
 					reject('Failed to start session');
 				}
 			} catch (error) {
-				console.error('Error starting session:', error);
+				
 				reject(error);
 			}
 		});
@@ -63,6 +82,23 @@
 		}
 		sendButtonDisabled.set(true);
 		if (newMessage.trim() === '') return;
+
+		if ($currentRegex) {
+			try {
+				const regex = new RegExp($currentRegex);
+				
+				if (!regex.test(newMessage)) {
+					errorMessage = 'Incorrectly formatted message. Please enter the requested information.';
+					sendButtonDisabled.set(false);
+					return;
+				}
+			} catch (error) {
+				
+				errorMessage = 'Invalid regex pattern';
+			}
+		}
+
+		errorMessage = '';
 
 		isSending = true;
 		messages.update((currentMessages) => [
@@ -87,9 +123,8 @@
 		let optionMessage: Message | null = null;
 
 		const profile = responseData.profile;
-		console.log(profile);
+		
 		if (profile) {
-
 			try {
 				const profileResponse = await fetch(`${PUBLIC_ENDPOINT_URL}/innovation-challenge/`, {
 					method: 'POST',
@@ -97,17 +132,23 @@
 						'Content-Type': 'application/json',
 						Authorization: `Bearer ${token}`
 					},
-					body: JSON.stringify({...profile, name: data.userData.given_name + ' ' + data.userData.family_name})
+					body: JSON.stringify({
+						...profile,
+						name: data.userData.given_name + ' ' + data.userData.family_name
+					})
 				});
 
 				if (profileResponse.ok) {
 					const profileData = await profileResponse.json();
-					console.log('Profile data fetched successfully:', profileData);
+					setTimeout(() => {
+						selectedNavigationOption.set(NavigationOption.Matches);
+					}, 2000);
+					
 				} else {
-					console.error('Failed to fetch profile data');
+					
 				}
 			} catch (error) {
-				console.error('Error fetching profile data:', error);
+				
 			}
 		}
 
@@ -136,6 +177,12 @@
 		isSending = false;
 	}
 
+	async function handleInput(event: InputEvent) {
+		const target = event.target as HTMLInputElement;
+		const inputValue = target.value;
+		currentRegex.set(inputValue);
+	}
+
 	function handleKeyPress(event: KeyboardEvent) {
 		if (event.key === 'Enter') {
 			sendMessage();
@@ -144,32 +191,34 @@
 </script>
 
 <div class="flex h-full w-full flex-col items-start rounded-2xl bg-base-200 md:rounded-r-none">
-	<div class="message-container flex h-full w-full flex-grow flex-col gap-4 overflow-y-auto p-8">
+	<div
+		bind:this={messageContainer}
+		class="message-container flex h-full w-full flex-grow flex-col gap-8 overflow-y-auto p-8"
+	>
 		{#if !startedSession}
-			<div class="animate-pulse">
-				Please wait while we start the session...
-			</div>
+			<div class="animate-pulse">Please wait while we start the session...</div>
 		{/if}
 		{#each $messages as message (message.timestamp)}
-			{#if message.role === 'human'}
-				<HumanMessage {message} {data} />
-			{:else}
-				<AIMessage {message} {token} />
-			{/if}
+				{#if message.role === 'human'}
+					<HumanMessage {message} {data} />
+				{:else}
+					<AIMessage {message} {token} />
+				{/if}
 		{/each}
 	</div>
 	<div class="query-container w-full flex-shrink-0 p-8 text-sm">
+		<p class="text-error mb-2">{errorMessage}</p>
 		<div class="join-item flex items-center gap-2">
 			<input
 				type="text"
 				disabled={$sendButtonDisabled}
 				bind:value={newMessage}
-				class="input h-14 w-full rounded-2xl input-sm"
+				class="input input-sm h-14 w-full rounded-2xl"
 				placeholder="Type your message here..."
 				on:keypress={handleKeyPress}
 			/>
 			<button
-				class="btn h-14 rounded-2xl btn-sm"
+				class="btn btn-sm h-14 rounded-2xl"
 				on:click={sendMessage}
 				disabled={isSending || $sendButtonDisabled}>Send Message</button
 			>

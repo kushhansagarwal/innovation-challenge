@@ -10,7 +10,7 @@
 
 	// Function to handle button click
 	function handleWordClick(word: string) {
-		console.log(`Word clicked: ${word}`);
+		
 		messages.update((currentMessages: Message[]) => [
 			...currentMessages,
 			{ role: 'human', content: `Sample message for word: ${word}`, timestamp: Date.now() }
@@ -18,9 +18,9 @@
 	}
 </script>
 
-<div class="relative ml-auto max-w-[50rem] rounded-3xl bg-base-100 text-primary-content">
+<div class="relative message ml-auto max-w-[50rem] rounded-3xl bg-base-100 text-primary-content">
 	<div
-	class="px-6 pb-16 pt-6 md:p-5 md:pb-8 text-sm"
+	class="px-6 pb-8 pt-6 text-sm"
 
 	>
 		{#if words}
