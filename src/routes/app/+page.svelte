@@ -37,7 +37,7 @@
 	}
 </script>
 
-<section class="flex h-screen md:p-10 md:px-0 relative">
+<section class="flex h-dvh md:p-10 md:px-0 relative">
 	<!-- Hamburger menu button - only visible on md and below -->
 	<button 
 		class="md:hidden mb-20 fixed top-4 left-4 z-50 p-2 rounded-lg"
