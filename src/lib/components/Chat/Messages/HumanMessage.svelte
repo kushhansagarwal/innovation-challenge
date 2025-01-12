@@ -32,7 +32,7 @@
 			{/each}
 		{:else}
 			<!-- Display the message content if no words are available -->
-			<div class="whitespace-pre-wrap break-words max-w-full overflow-hidden text-ellipsis">{message.content}</div>
+			<div class="whitespace-pre-wrap break-words max-w-[12rem] md:max-w-50rem overflow-hidden text-ellipsis">{message.content}</div>
 		{/if}
 	</div>
 	<div class="absolute -bottom-6 right-6 flex items-end">
