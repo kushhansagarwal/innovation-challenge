@@ -49,21 +49,19 @@
 	{#if loading}
 		<p>Loading matches...</p>
 	{:else}
-		<div class="mb-8">
-			<div class="">
-				<div>
-					<h2>Your Matches</h2>
-					<p class="text-base-content mb-5">Here are your potential matches based on your preferences. Click "Reset Matches" to start over and find new matches.</p>
-				</div>
-				<button 
-					class="btn btn-error"
-					on:click={goToChat}
-				>
-					Reset Matches
-				</button>
-			</div>
-		</div>
-		<div class="grid grid-cols-1 gap-8 md:grid-cols-3 overflow-y-auto">
+	<div class="grid grid-cols-1 gap-8 md:grid-cols-3 overflow-y-auto">
+					<div>
+						<div>
+							<h2>Your Matches</h2>
+							<p class="text-base-content mb-5">Here are your potential matches based on your preferences. Click "Reset Matches" to start over and find new matches.</p>
+						</div>
+						<button 
+							class="btn btn-error"
+							on:click={goToChat}
+						>
+							Reset Matches
+						</button>
+					</div>
 			{#each matches as row, index}
 				<div class="card rounded-lg bg-base-100 p-4 shadow-md">
 					<SheetRow {row} {index} />
