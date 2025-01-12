@@ -17,7 +17,7 @@ export async function load({ request, cookies }: { request: RequestEvent; cookie
 		userData = await kindeAuthClient.getUser(request as unknown as SessionManager);
 
 		if (userData) { // Ensure userData and email are defined
-			console.log('User is authenticated with email:', userData.email);
+			
 			const kindeToken = await kindeAuthClient.getToken(request as unknown as SessionManager);
 
 			try {
@@ -30,26 +30,26 @@ export async function load({ request, cookies }: { request: RequestEvent; cookie
 					body: JSON.stringify(userData)
 				});
 
-				console.log('Response:', response);
+				
 
 				if (response.ok) {
 					const data = await response.json();
-					console.log('Data fetched successfully:', data);
+					
 				} else {
-					console.error('Failed to fetch data');
+					
 				}
 			} catch (error) {
-				console.error('Error fetching data:', error);
+				
 			}
 			return {
 				userData
 			};
 		} else {
-			console.log('User data is incomplete or undefined');
+			
 			throw redirect(302, '/api/auth/register?post_login_redirect_url=/app');
 		}
 	} else {
-		console.log('redirecting to login');
+		
 		throw redirect(302, '/api/auth/register?post_login_redirect_url=/app');
 	}
 

@@ -23,9 +23,9 @@ export const handle: Handler = async ({ event, resolve }) => {
   if (token) {
     jwt.verify(token, getKey, {}, (err, decoded) => {
       if (err) {
-        console.log('Token verification failed:', err);
+        
       } else {
-        console.log('Token verified successfully:', decoded);
+        
       }
     });
   }

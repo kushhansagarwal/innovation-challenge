@@ -4,6 +4,7 @@
 	import SheetRow from '../Sheet/SheetRow.svelte';
 	import { PUBLIC_ENDPOINT_URL } from '$env/static/public';
 	import Sheet from '../Sheet/Sheet.svelte';
+	import { NavigationOption, selectedNavigationOption } from '$lib/stores';
 
 	export let token: string;
 	let matches: SheetInfo[] = [];
@@ -25,25 +26,43 @@
                 } = await response.json();
 				matches = data.matches;
 			} else {
-				console.error('Failed to fetch matches');
+				
 			}
 		} catch (error) {
-			console.error('Error fetching matches:', error);
+			
 		} finally {
 			loading = false;
 		}
 	}
 
 	onMount(async () => {
-		console.log('Matches mounted');
+		
 		await fetchMatches();
 	});
+
+	function goToChat() {
+		selectedNavigationOption.set(NavigationOption.Chat);
+	}
 </script>
 
-<div class="flex h-full w-full flex-col items-start rounded-2xl bg-base-200 md:rounded-r-none p-8">
+<div class="relative flex h-full w-full flex-col items-start rounded-2xl bg-base-200 md:rounded-r-none p-8">
 	{#if loading}
 		<p>Loading matches...</p>
 	{:else}
+		<div class="mb-8">
+			<div class="">
+				<div>
+					<h2>Your Matches</h2>
+					<p class="text-base-content mb-5">Here are your potential matches based on your preferences. Click "Reset Matches" to start over and find new matches.</p>
+				</div>
+				<button 
+					class="btn btn-error"
+					on:click={goToChat}
+				>
+					Reset Matches
+				</button>
+			</div>
+		</div>
 		<div class="grid grid-cols-1 gap-8 md:grid-cols-3 overflow-y-auto">
 			{#each matches as row, index}
 				<div class="card rounded-lg bg-base-100 p-4 shadow-md">

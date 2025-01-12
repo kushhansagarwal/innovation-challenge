@@ -21,10 +21,10 @@
 				const data: SheetResponse = await response.json();
 				return data;
 			} else {
-				console.error('Failed to fetch data');
+				
 			}
 		} catch (error) {
-			console.error('Error fetching data:', error);
+			
 		}
 
 	}

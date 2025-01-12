@@ -1,27 +1,36 @@
 <script lang="ts">
     import type { UserType } from '$lib/types';
-    import { selectedNavigationOption } from '$lib/stores';
+    import { selectedNavigationOption, isNavOpen } from '$lib/stores';
     import { NavigationOption } from '$lib/stores';
 
     export let data: { userData: UserType };
 </script>
 
-<div class="flex h-full max-w-md flex-col gap-4 rounded-2xl pl-8 md:rounded-l-none">
+<div class="flex h-full max-w-md flex-col gap-4 p-4 md:pl-8 md:rounded-l-none bg-base-100 pt-16 md:pt-0">
 	<div class="flex-shrink-0 cursor-pointer hover:bg-base-200 p-4 rounded-2xl" on:click={() => selectedNavigationOption.set(NavigationOption.Chat)}>
 		<h2 class="logo mb-2">Innovation Challenge Matching</h2>
 		<p class="logo-text">Made by Kuhnelo for UCLA</p>
 	</div>
 	<div class="divider"></div>
 	<div class="button-list h-full flex-grow">
-		<button on:click={() => selectedNavigationOption.set(NavigationOption.Chat)}>
+		<button on:click={() => {
+			selectedNavigationOption.set(NavigationOption.Chat);
+			isNavOpen.set(false);
+		}}>
 			<img src="/icons/chat.svg"  alt="Chat Icon" />
 			<span>Chat</span>
 		</button>
-		<button on:click={() => selectedNavigationOption.set(NavigationOption.Matches)}>
+		<button on:click={() => {
+			selectedNavigationOption.set(NavigationOption.Matches);
+			isNavOpen.set(false);
+		}}>
 			<img src="/icons/matches.svg" alt="Matches Icon" />
 			<span>Matches</span>
 		</button>
-		<button on:click={() => selectedNavigationOption.set(NavigationOption.GoogleSheet)}>
+		<button on:click={() => {
+			selectedNavigationOption.set(NavigationOption.GoogleSheet);
+			isNavOpen.set(false);
+		}}>
 			<img src="/icons/dashboard.svg" alt="Dashboard Icon" />
 			<span>All Participants</span>
 		</button>
@@ -45,7 +54,7 @@
 			</div>
 		</div>
 		<div class="divider my-4"></div>
-		<a href="/api/auth/logout" class="btn btn-error w-full text-primary-content">
+		<a href="/api/auth/logout" class="btn btn-error w-full">
 			<!-- <img src="/icons/logout.svg" class="fill-amber-50" alt="Logout Icon" /> -->
 			<span>Log Out</span>
 		</a>
