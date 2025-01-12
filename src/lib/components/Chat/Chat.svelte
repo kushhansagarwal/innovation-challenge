@@ -193,6 +193,12 @@
 			sendMessage();
 		}
 	}
+
+	function autoResizeTextarea(event: Event) {
+		const target = event.target as HTMLTextAreaElement;
+		target.style.height = 'auto';
+		target.style.height = `${target.scrollHeight}px`;
+	}
 </script>
 
 <div class="flex h-full w-full flex-col items-start rounded-2xl bg-base-200 md:rounded-r-none">
@@ -214,14 +220,14 @@
 	<div class="query-container w-full flex-shrink-0 p-8 text-sm">
 		<p class="text-error mb-2">{errorMessage}</p>
 		<div class="join-item flex items-center gap-2">
-			<input
-				type="text"
+			<textarea
 				disabled={$sendButtonDisabled}
 				bind:value={newMessage}
-				class="input input-sm h-14 w-full rounded-2xl"
+				class="textarea leading-5 textarea-sm h-14 w-full rounded-2xl p-4 resize-y"
 				placeholder="Type your message here..."
 				on:keypress={handleKeyPress}
-			/>
+				on:input={autoResizeTextarea}
+			></textarea>
 			<button
 				class="btn btn-sm h-14 rounded-2xl"
 				on:click={sendMessage}
