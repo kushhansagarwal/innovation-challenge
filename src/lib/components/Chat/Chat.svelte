@@ -61,7 +61,6 @@
 					sendButtonDisabled.set(false);
 					const responseData = (await response.json()).response;
 					sessionId.set(responseData.session_id);
-					console.log(responseData.regex || '.*');
 					currentRegex.set(responseData.regex || '.*');
 					skippable = responseData.skippable || false;
 					messages.update((currentMessages) => [
@@ -134,8 +133,6 @@
 
 		const profile = responseData.profile;
 
-		console.log(responseData);
-		console.log(responseData.regex || '.*');
 		currentRegex.set(responseData.regex || '.*');
 		skippable = responseData.skippable || false;
 		
