@@ -14,7 +14,7 @@
 		selectedNavigationOption.set(NavigationOption.Matches);
 	} else {
 		selectedNavigationOption.set(NavigationOption.Chat);
-	}
+	} 
 
 	let currentNavigationOption = NavigationOption.Chat;
 	let touchStart = 0;
