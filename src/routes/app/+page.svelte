@@ -7,9 +7,16 @@
 	import { NavigationOption, isNavOpen } from '$lib/stores';
 	import Matches from '$lib/components/Matches/Matches.svelte';
 	import { onMount } from 'svelte';
-	export let data: { userData: UserType; token: string };
+	export let data: { userData: UserType; token: string; status: number };
 
-	let currentNavigationOption = NavigationOption.GoogleSheet;
+
+	if (data.status === 200) {
+		selectedNavigationOption.set(NavigationOption.Matches);
+	} else {
+		selectedNavigationOption.set(NavigationOption.Chat);
+	}
+
+	let currentNavigationOption = NavigationOption.Chat;
 	let touchStart = 0;
 	let touchEnd = 0;
 

@@ -20,6 +20,8 @@ export async function load({ request, cookies }: { request: RequestEvent; cookie
 			
 			const kindeToken = await kindeAuthClient.getToken(request as unknown as SessionManager);
 
+			let status = 0;
+
 			try {
 				const response = await fetch(`${PUBLIC_ENDPOINT_URL}/innovation-challenge/user`, {
 					method: 'POST',
@@ -30,19 +32,20 @@ export async function load({ request, cookies }: { request: RequestEvent; cookie
 					body: JSON.stringify(userData)
 				});
 
-				
+				status = response.status;
 
 				if (response.ok) {
 					const data = await response.json();
-					
+					console.log(data);
 				} else {
-					
+					console.log('Error fetching user data');
 				}
 			} catch (error) {
 				
 			}
 			return {
-				userData
+				userData: userData,
+				status: status
 			};
 		} else {
 			

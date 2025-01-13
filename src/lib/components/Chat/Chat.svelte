@@ -3,7 +3,7 @@
 	import AIMessage from './Messages/AIMessage.svelte';
 	import type { ChatResponse, Message, UserType } from '$lib/types.d.ts';
 	import { messages, NavigationOption, selectedNavigationOption, sessionId } from '$lib/stores';
-	import { PUBLIC_ENDPOINT, PUBLIC_ENDPOINT_URL } from '$env/static/public';
+	import { PUBLIC_ENDPOINT_URL } from '$env/static/public';
 	import { onMount, afterUpdate } from 'svelte';
 	import { sendButtonDisabled, currentRegex } from '$lib/stores';
 
