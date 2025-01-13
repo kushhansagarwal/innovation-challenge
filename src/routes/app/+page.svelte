@@ -36,6 +36,10 @@
 			isNavOpen.set(false);
 		}
 	}
+
+	onMount(() => {
+		window.onbeforeunload = function() { return "Your work will be lost."; };
+	});
 </script>
 
 <section class="relative flex h-dvh md:p-10 md:px-0">
