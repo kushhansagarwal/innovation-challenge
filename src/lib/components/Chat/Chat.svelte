@@ -229,17 +229,17 @@
 	</div>
 	<div class="query-container w-full flex-shrink-0 p-8 text-sm">
 		<p class="text-error mb-2">{errorMessage}</p>
-		<div class="join-item flex items-center gap-2">
+		<div class="join-item flex flex-col md:flex-row md:items-center gap-2">
 			<textarea
 				disabled={$sendButtonDisabled}
 				bind:value={newMessage}
 				class="textarea leading-5 textarea-sm h-14 w-full rounded-2xl p-4 resize-y"
-				placeholder={skippable ? 'Type your message here or type "skip"...' : 'Type your message here...'}
+				placeholder={skippable ? 'Type your message or type "skip"...' : 'Type your message here...'}
 				on:keypress={handleKeyPress}
 				on:input={autoResizeTextarea}
 			></textarea>
 			<button
-				class="btn btn-sm h-14 rounded-2xl"
+				class="btn btn-sm h-14 w-full md:w-auto rounded-2xl"
 				on:click={sendMessage}
 				disabled={isSending || $sendButtonDisabled}>Send Message</button
 			>
