@@ -60,7 +60,7 @@
 				<button class="btn btn-error" on:click={goToChat}> Reset Matches </button>
 			</div>
 			{#each matches as row, index}
-				<div class="card rounded-lg bg-base-100 p-4 shadow-md">
+				<div class="card rounded-lg bg-base-100 p-4">
 					<SheetRow {row} {index} />
 				</div>
 			{/each}

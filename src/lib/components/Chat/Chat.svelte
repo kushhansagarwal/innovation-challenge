@@ -23,6 +23,8 @@
 	let errorMessage = '';
 	let isSending = false;
 	let startedSession = false;
+	let skippable = false;
+	let placeHolderMessage = 'Type your message here...';
 
 	sendButtonDisabled.set(true);
 
@@ -61,6 +63,7 @@
 					sessionId.set(responseData.session_id);
 					console.log(responseData.regex || '.*');
 					currentRegex.set(responseData.regex || '.*');
+					skippable = responseData.skippable || false;
 					messages.update((currentMessages) => [
 						...currentMessages,
 						{ role: 'ai', content: responseData.message, timestamp: Date.now() }
@@ -84,7 +87,7 @@
 		sendButtonDisabled.set(true);
 		if (newMessage.trim() === '') return;
 
-		if ($currentRegex) {
+		if ($currentRegex && newMessage.trim() !== 'skip') {
 			try {
 				const regex = new RegExp($currentRegex);
 				
@@ -97,6 +100,12 @@
 				
 				errorMessage = 'Invalid regex pattern';
 			}
+		}
+
+		if (!skippable && newMessage.trim().toLowerCase() === 'skip') {
+			errorMessage = `The message "skip" is not allowed at this step. Please enter the requested information.`;
+			sendButtonDisabled.set(false);
+			return;
 		}
 
 		errorMessage = '';
@@ -114,7 +123,7 @@
 				Authorization: `Bearer ${token}`
 			},
 			body: JSON.stringify({
-				user_input: newMessage.trim(),
+				user_input: skippable ? '' : newMessage.trim(),
 				session_id: $sessionId
 			})
 		});
@@ -128,6 +137,7 @@
 		console.log(responseData);
 		console.log(responseData.regex || '.*');
 		currentRegex.set(responseData.regex || '.*');
+		skippable = responseData.skippable || false;
 		
 		if (profile) {
 			try {
@@ -224,7 +234,7 @@
 				disabled={$sendButtonDisabled}
 				bind:value={newMessage}
 				class="textarea leading-5 textarea-sm h-14 w-full rounded-2xl p-4 resize-y"
-				placeholder="Type your message here..."
+				placeholder={skippable ? 'Type your message here or type "skip"...' : 'Type your message here...'}
 				on:keypress={handleKeyPress}
 				on:input={autoResizeTextarea}
 			></textarea>

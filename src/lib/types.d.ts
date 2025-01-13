@@ -28,6 +28,7 @@ export type ChatResponse = {
 	options: string[];
 	profile?: SheetInfo;
 	regex?: string;
+	skippable?: boolean;
 };
 
 export type SheetResponse = {
