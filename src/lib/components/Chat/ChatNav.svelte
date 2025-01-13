@@ -6,7 +6,7 @@
     export let data: { userData: UserType };
 </script>
 
-<div class="flex h-full max-w-md flex-col gap-4 md:pl-8 md:rounded-l-none bg-base-100 pt-16 md:pt-0">
+<div class="flex h-full max-w-md flex-col gap-4 p-8 md:p-0 md:pl-8 md:rounded-l-none bg-base-100 pt-16 md:pt-0">
 	<div class="flex-shrink-0 cursor-pointer hover:bg-base-200 p-4 rounded-2xl" on:click={() => selectedNavigationOption.set(NavigationOption.Chat)}>
 		<h2 class="logo mb-2">Innovation Challenge Matching</h2>
 		<p class="logo-text">Made by Kuhnelo for UCLA</p>
