@@ -187,7 +187,7 @@
 
 	<div class="grid xl:h-full grid-cols-1 overflow-y-auto xl:grid-cols-2">
 		<div class="overflow-y-auto order-2 xl:order-1">
-			<div class="flex h-full w-full flex-grow flex-col gap-4 overflow-y-auto p-8">
+			<div class="flex h-full w-full flex-grow flex-col gap-4 overflow-y-auto p-4 md:p-8">
 				{#if $isLoading}
 				<div class="animate-pulse">Loading all the data...</div>
 			{/if}

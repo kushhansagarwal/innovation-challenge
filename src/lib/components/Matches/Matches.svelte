@@ -43,7 +43,7 @@
 </script>
 
 <div
-	class="relative flex h-full w-full flex-col items-start rounded-2xl bg-base-200 p-8 md:rounded-r-none"
+	class="relative flex h-full w-full flex-col items-start rounded-2xl bg-base-200 p-4 md:p-8 md:rounded-r-none"
 >
 	{#if loading}
 		<div class="animate-pulse">Loading matches...</div>
