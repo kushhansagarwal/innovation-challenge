@@ -214,7 +214,7 @@
 <div class="flex h-full w-full flex-col items-start rounded-2xl bg-base-200 md:rounded-r-none">
 	<div
 		bind:this={messageContainer}
-		class="message-container flex h-full w-full flex-grow flex-col gap-8 overflow-y-auto p-8"
+		class="message-container flex h-full w-full flex-grow flex-col gap-8 overflow-y-auto p-4 md:p-8"
 	>
 		{#if !startedSession}
 			<div class="animate-pulse">Please wait while we start the session...</div>
@@ -227,9 +227,9 @@
 				{/if}
 		{/each}
 	</div>
-	<div class="query-container w-full flex-shrink-0 p-8 text-sm">
+	<div class="query-container w-full flex-shrink-0 p-4 md:p-8 text-sm">
 		<p class="text-error mb-2">{errorMessage}</p>
-		<div class="join-item flex flex-col md:flex-row md:items-center gap-2">
+		<div class="join-item flex flex-col xl:flex-row items-center gap-2">
 			<textarea
 				disabled={$sendButtonDisabled}
 				bind:value={newMessage}
@@ -239,7 +239,7 @@
 				on:input={autoResizeTextarea}
 			></textarea>
 			<button
-				class="btn btn-sm h-14 w-full md:w-auto rounded-2xl"
+				class="btn btn-sm h-14 w-full xl:w-auto rounded-2xl"
 				on:click={sendMessage}
 				disabled={isSending || $sendButtonDisabled}>Send Message</button
 			>
