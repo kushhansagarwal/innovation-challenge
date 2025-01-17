@@ -50,4 +50,5 @@ export type SheetInfo = {
 	role_interest?: string;
 	bio?: string;
 	name?: string;
+	picture?: string;
 };

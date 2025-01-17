@@ -154,7 +154,7 @@
 					const profileData = await profileResponse.json();
 					setTimeout(() => {
 						selectedNavigationOption.set(NavigationOption.Matches);
-					}, 5000);
+					}, 3000);
 					
 				} else {
 					

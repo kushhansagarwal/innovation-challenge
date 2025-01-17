@@ -9,7 +9,8 @@
 		<div class="avatar">
 			<div class="mask mask-squircle mr-4 h-24 w-24">
 				<img
-					src={`https://ui-avatars.com/api/?name=${row.name?.replace(' ', '+')}`}
+					src={row.picture?.replace('s96-c', 's500-c') ?? `https://ui-avatars.com/api/?name=${row.name?.replace(' ', '+')}`}
+					referrerpolicy="no-referrer"
 					alt="Avatar Tailwind CSS Component"
 				/>
 			</div>

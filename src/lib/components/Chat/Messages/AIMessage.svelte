@@ -49,7 +49,7 @@
 		if (responseData.profile) {
 			setTimeout(() => {
 				selectedNavigationOption.set(NavigationOption.Matches);
-			}, 5000);
+			}, 3000);
 		}
 	}
 

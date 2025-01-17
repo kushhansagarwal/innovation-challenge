@@ -41,7 +41,8 @@
 				class="relative h-12 w-12  rounded-full "
 			>
 				<img
-					src={`https://ui-avatars.com/api/?name=${data.userData.given_name}+${data.userData.family_name}`}
+					src={data.userData.picture}
+					referrerpolicy="no-referrer"
 					alt="User Avatar"
 					class="h-full w-full object-cover rounded-full"
 				/>
