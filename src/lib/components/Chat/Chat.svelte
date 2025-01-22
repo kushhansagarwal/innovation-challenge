@@ -237,6 +237,10 @@
 			></textarea>
 			<button
 				class="btn btn-sm h-14 w-full xl:w-auto rounded-2xl"
+				on:click={() => { newMessage = 'skip'; sendMessage(); }}
+				disabled={isSending || $sendButtonDisabled}>Skip</button>
+			<button
+				class="btn btn-sm h-14 w-full xl:w-auto rounded-2xl"
 				on:click={sendMessage}
 				disabled={isSending || $sendButtonDisabled}>Send Message</button
 			>
