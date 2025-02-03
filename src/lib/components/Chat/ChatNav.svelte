@@ -34,6 +34,12 @@
 			<img src="/icons/dashboard.svg" alt="Dashboard Icon" />
 			<span>All Participants</span>
 		</button>
+		<a href="https://ucla.qualtrics.com/jfe/form/SV_2tQ1ogGoOJt8enI" target="_blank">
+			<button>
+				<img src="/icons/register.svg" alt="Dashboard Icon" />
+				<span>Found a team? Register here!</span>
+			</button>
+		</a>
 	</div>
 	<div class=" w-full flex-shrink-0 rounded-2xl bg-base-200 p-4">
 		<div class="flex items-center gap-4">
